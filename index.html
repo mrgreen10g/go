@@ -15,52 +15,52 @@
             min-height: 100vh; overflow-x: hidden; text-align: center;
         }
 
-        /* Космический фон */
         .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 50% 50%, #161d31 0%, #05060a 100%); }
         .stars { position: absolute; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.4; animation: drift 60s linear infinite; }
         @keyframes drift { from {background-position: 0 0;} to {background-position: 1000px 1000px;} }
 
         .container { width: 100%; max-width: 380px; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
 
-        /* Шапка */
+        /* Шапка в одну строку */
         .header { margin-bottom: 35px; width: 100%; }
-        h1 { font-size: 20px; line-height: 1.4; font-weight: 400; margin: 0; }
+        h1 { 
+            font-size: 16px; font-weight: 400; margin: 0; 
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
         .highlight { 
-            color: var(--gold); font-weight: 800; font-size: 26px; text-transform: uppercase; 
-            display: block; margin: 10px 0; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            color: var(--gold); font-weight: 800; font-size: 18px; text-transform: uppercase; 
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             animation: glow 2s ease-in-out infinite alternate;
         }
-        @keyframes glow { from { text-shadow: 0 0 10px var(--gold); } to { text-shadow: 0 0 25px var(--mystic); } }
+        @keyframes glow { from { text-shadow: 0 0 10px var(--gold); } to { text-shadow: 0 0 20px var(--mystic); } }
         
-        .example { opacity: 0.6; font-size: 14px; margin-top: 8px; font-style: italic; color: #7d5fff; }
+        .example { opacity: 0.6; font-size: 13px; margin-top: 12px; font-style: italic; color: #7d5fff; }
 
-        /* Кнопка ТГ */
         .btn-main { 
             background: linear-gradient(135deg, var(--tg-color), var(--mystic));
-            color: white; padding: 20px; border-radius: 40px; text-decoration: none; 
-            font-weight: bold; font-size: 18px; display: flex; align-items: center; 
+            color: white; padding: 18px; border-radius: 50px; text-decoration: none; 
+            font-weight: bold; font-size: 17px; display: flex; align-items: center; 
             justify-content: center; gap: 12px; box-shadow: 0 8px 25px rgba(125, 95, 255, 0.3);
-            border: none; width: 100%; cursor: pointer; transition: 0.3s;
+            border: none; width: 100%; cursor: pointer;
         }
 
-        /* Блок копирования */
         .copy-section { margin-top: 40px; background: rgba(255,255,255,0.03); border-radius: 24px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); width: 100%; }
-        .copy-title { font-size: 14px; color: #ccc; margin-bottom: 15px; line-height: 1.4; }
+        .copy-title { font-size: 13px; color: #ccc; margin-bottom: 15px; line-height: 1.4; }
         .nick-btn { background: rgba(0,0,0,0.3); border: 1px solid var(--mystic); color: #fff; padding: 15px; border-radius: 15px; font-size: 18px; width: 100%; cursor: pointer; margin-bottom: 20px; font-family: monospace; }
         .search-preview { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-        /* Инструкция-Оверлей */
+        /* Оверлей - ЦЕНТРИРОВАННЫЙ */
         #guideOverlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.97); z-index: 1000; display: none;
+            background: rgba(0,0,0,0.98); z-index: 9999; display: none;
             flex-direction: column; justify-content: center; align-items: center;
-            padding: 20px; text-align: center;
+            padding: 30px; text-align: center;
         }
-        .arrow-top { position: absolute; top: 20px; right: 25px; font-size: 50px; color: var(--gold); animation: point 0.8s infinite alternate; }
+        .arrow-top { position: absolute; top: 30px; right: 40px; font-size: 60px; color: var(--gold); animation: point 0.8s infinite alternate; }
         @keyframes point { from { transform: translate(0, 0); } to { transform: translate(10px, -10px); } }
         
-        .overlay-text { font-size: 18px; line-height: 1.6; max-width: 300px; }
-        .close-btn { background: #fff; color: #000; padding: 15px 40px; border-radius: 50px; font-weight: bold; border: none; font-size: 16px; margin-top: 30px; }
+        .overlay-text { font-size: 18px; line-height: 1.6; color: white; margin-top: 20px; }
+        .close-btn { background: #fff; color: #000; padding: 15px 50px; border-radius: 50px; font-weight: bold; border: none; font-size: 16px; margin-top: 40px; }
 
     </style>
 </head>
@@ -70,8 +70,8 @@
 
 <div class="container">
     <div class="header">
-        <h1>🔮 Получи <span class="highlight">БЕСПЛАТНЫЙ</span> разбор матрицы судьбы! 🔮</h1>
-        <p style="opacity: 0.9; font-size: 16px; margin: 0;">Напишите мне в Telegram свою дату рождения и имя ✨</p>
+        <h1>🔮 Получи <span class="highlight">БЕСПЛАТНЫЙ</span> разбор матрицы! 🔮</h1>
+        <p style="opacity: 0.9; font-size: 15px; margin: 15px 0 0 0;">Напишите мне в Telegram свою дату рождения и имя ✨</p>
         <div class="example">Пример — Мария 16.03.1989</div>
     </div>
 
@@ -82,17 +82,17 @@
     <div class="copy-section">
         <div class="copy-title">Или скопируй мой ник и найди меня прямо в поиске Telegram 👇</div>
         <button class="nick-btn" onclick="copyNick()">@diamond_evaa</button>
-        <img src="search_preview.png" class="search-preview" alt="Eva Search">
+        <img src="search_preview.png" class="search-preview" alt="Поиск Евы">
     </div>
 </div>
 
 <div id="guideOverlay">
     <div class="arrow-top"><i class="fas fa-arrow-up"></i></div>
     <div class="overlay-text">
-        <div style="font-size: 40px; margin-bottom: 10px;">⋮</div>
-        <b>Нажми три точки</b> в углу TikTok<br><br>
-        и выбери пункт:<br>
-        <span style="color: var(--gold); font-size: 22px; border: 1px solid; padding: 8px 15px; border-radius: 12px; display: inline-block; margin-top: 15px; font-weight: bold;">
+        <div style="font-size: 50px; margin-bottom: 20px;">⋮</div>
+        <b>Шаг 1:</b> Нажми три точки в углу<br><br>
+        <b>Шаг 2:</b> Выбери пункт:<br>
+        <span style="color: var(--gold); font-size: 22px; border: 1px solid; padding: 10px 20px; border-radius: 12px; display: inline-block; margin-top: 20px; font-weight: bold;">
             ОТКРЫТЬ В БРАУЗЕРЕ
         </span>
     </div>
@@ -103,26 +103,26 @@
     const tgUrl = "tg://resolve?domain=diamond_evaa";
     const webTgUrl = "https://t.me/diamond_evaa";
 
-    function isTikTok() {
-        return /TikTok/i.test(navigator.userAgent);
+    // Улучшенная проверка на TikTok и WebView
+    function isRestrictedBrowser() {
+        var ua = navigator.userAgent || navigator.vendor || window.opera;
+        return (ua.indexOf('TikTok') > -1) || (ua.indexOf('musical_ly') > -1) || (ua.indexOf('App-WebView') > -1);
     }
 
-    // Умный редирект при загрузке
     window.onload = function() {
-        if (!isTikTok()) {
-            // Если мы НЕ в ТикТоке, сразу пытаемся открыть приложение
-            window.location.href = tgUrl;
-            // Если приложение не открылось за 1.5 сек, кидаем на веб-страницу ТГ
-            setTimeout(() => { window.location.href = webTgUrl; }, 1500);
+        // РЕДИРЕКТ ТОЛЬКО ВНЕ ТИК-ТОКА
+        if (!isRestrictedBrowser()) {
+            setTimeout(() => {
+                window.location.href = tgUrl;
+                setTimeout(() => { window.location.href = webTgUrl; }, 1200);
+            }, 3000); 
         }
     }
 
     function handleMainClick() {
-        if (isTikTok()) {
-            // В ТикТоке показываем гайд
+        if (isRestrictedBrowser()) {
             document.getElementById('guideOverlay').style.display = 'flex';
         } else {
-            // Вне ТикТока просто переходим
             window.location.href = tgUrl;
         }
     }
@@ -132,13 +132,13 @@
     }
 
     function copyNick() {
-        const tempInput = document.createElement("input");
-        tempInput.value = "@diamond_evaa";
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-        alert('Ник скопирован! ✨ Вставь его в поиске Telegram');
+        const el = document.createElement('textarea');
+        el.value = '@diamond_evaa';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        alert('Ник скопирован! ✨');
     }
 </script>
 
