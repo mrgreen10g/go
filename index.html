@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Переход...</title>
+</head>
+<body style="text-align:center; padding-top:50px; font-family:sans-serif;">
+    <h2>Перенаправляем в Telegram...</h2>
+    <script>
+        // Это магия, которая дергает приложение ТГ
+        window.location.href = "tg://resolve?domain=diamond_evaa";
+        
+        // Если через 1 сек не перекинуло, открываем обычную ссылку
+        setTimeout(function() {
+            window.location.href = "https://t.me/diamond_evaa";
+        }, 1000);
+    </script>
+</body>
+</html>
