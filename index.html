@@ -6,13 +6,14 @@
     <title>Бесплатный разбор Матрицы Судьбы</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --tg-color: #24A1DE; --bg-dark: #0a0b10; --gold: #ffd700; }
-        body { background: var(--bg-dark); color: white; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        :root { --tg-color: #24A1DE; --bg-dark: #07080c; --gold: #ffd700; --mystic-glow: rgba(36, 161, 222, 0.2); }
+        body { background: var(--bg-dark); color: white; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; position: relative; }
         
-        /* Фон с эффектом туманности */
-        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 50% 50%, #1a2a44 0%, #0a0b10 100%); opacity: 0.6; }
+        /* Фон Mystic Space */
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 30% 20%, #1a2a44 0%, #07080c 60%, #101525 100%); opacity: 0.8; }
+        .nebula { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWY0MjZhIiBzdG9wLW9wYWNpdHk9Ii4zIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDcwODBjIiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4='); opacity: 0.4; }
 
-        .container { width: 90%; max-width: 400px; text-align: center; padding: 20px; }
+        .container { width: 90%; max-width: 400px; text-align: center; padding: 20px; z-index: 1; }
 
         /* Шапка */
         h1 { font-size: 20px; line-height: 1.4; margin-bottom: 25px; font-weight: 500; }
@@ -21,31 +22,52 @@
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); text-shadow: 0 0 25px rgba(255, 215, 0, 0.9); } 100% { transform: scale(1); } }
 
         /* Стрелки */
-        .arrow-down { font-size: 24px; color: var(--tg-color); margin: 10px 0; animation: bounce 2s infinite; }
+        .arrow-down { font-size: 24px; color: var(--tg-color); margin: 10px 0; animation: bounce 2s infinite; text-shadow: 0 0 10px var(--tg-color); }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
-        /* Кнопка ТГ */
-        .btn-main { background: var(--tg-color); color: white; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px rgba(36, 161, 222, 0.4); border: none; width: 100%; cursor: pointer; }
+        /* Кнопка ТГ (выпрямленная) */
+        .btn-main { background: var(--tg-color); color: white; padding: 18px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px rgba(36, 161, 222, 0.4); border: none; width: 100%; cursor: pointer; transition: 0.2s; }
+        .btn-main:active { transform: scale(0.97); }
         .btn-main i { font-size: 22px; }
 
-        /* Блок инструкции */
-        .instruction-box { background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(36, 161, 222, 0.5); border-radius: 20px; padding: 20px; margin-top: 30px; position: relative; }
-        .instruction-title { font-size: 14px; color: #aaa; margin-bottom: 15px; font-style: italic; }
+        /* Блок инструкции (Копирование + Профиль) */
+        .instruction-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; margin-top: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
+        .instruction-title { font-size: 13px; color: #888; margin-bottom: 15px; font-style: italic; }
         
         /* Кнопка копирования */
-        .copy-btn { background: #1c1f26; border: 1px solid #333; color: var(--tg-color); padding: 12px; border-radius: 10px; font-family: monospace; font-size: 18px; width: 100%; margin-bottom: 10px; cursor: pointer; transition: 0.3s; position: relative; }
-        .copy-btn::after { content: 'Нажми, чтобы скопировать'; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #666; width: 100%; }
+        .copy-btn { background: #1a1c24; border: 1px solid #333; color: var(--tg-color); padding: 15px; border-radius: 12px; font-family: monospace; font-size: 20px; width: 100%; margin-bottom: 20px; cursor: pointer; transition: 0.3s; position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .copy-btn.copied { background: #1b3d2a; color: #4CAF50; border-color: #4CAF50; }
+        
+        /* Профиль-подтверждение (визуал image_8.png) */
+        .profile-confirm { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); border-radius: 12px; padding: 15px; border-top: 1px solid #222; margin-top: 20px; text-align: left; }
+        .avatar { width: 45px; height: 45px; border-radius: 50%; background: #222 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzk5OSIgZD0iTTEyIDJDMiAyIDEyIDUgMTcgMTJDMjIgMjIgMjUgMzUgMjUuNUwyMSA0NSAxMS41IDYxTDcgNDMgMCAyNi41TDQgMjMuNUM0LjUgMjMgNC41IDIyIDUgMjV6TTExLjUgMzRDMTIuNSAzNi41IDEzIDM4IDEzIDQwQzEzIDQyIDEyLjUgNDMuNSAxMS41IDQ2QzEwLjUgNDguNSA5LjUgNTAgOC41IDUwQzcuNSA1MCA2LjUgNDguNSA1LjUgNDZDNC41IDQzLjUgNCA0MiA0IDQwQzQgMzggNC41IDM2LjUgNS41IDM0QzYuNSAzMS41IDcuNSAzMCA4LjUgMzBDOS41IDMwIDEwLjUgMzEuNSAxMS41IDM0eiIvPjwvc3ZnPg==') no-repeat center center; background-size: cover; border: 1px solid rgba(255,255,255,0.1); }
+        .profile-info { flex: 1; }
+        .profile-name { font-size: 15px; font-weight: bold; color: #eee; margin-bottom: 3px; }
+        .profile-handle { font-size: 13px; color: var(--tg-color); }
+        .found-icon { color: var(--gold); font-size: 18px; margin-left: auto; }
 
-        /* Гайд по точкам */
-        .dots-guide { margin-top: 40px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 15px; font-size: 13px; color: #888; border-top: 1px solid #222; }
-        .dots-guide b { color: #ccc; }
-        .dots-icon { position: absolute; top: 10px; right: 10px; font-size: 20px; color: white; opacity: 0.5; }
+        /* Гайд по точкам (Advanced Card) */
+        .advanced-guide-card { margin-top: 50px; background: #0a0c10; border: 1px solid #1a1e26; border-radius: 20px; padding: 25px; box-shadow: 0 0 30px rgba(36, 161, 222, 0.15); border-left: 3px solid var(--tg-color); text-align: left; position: relative; }
+        .guide-title { font-size: 16px; font-weight: bold; color: #eee; margin-bottom: 10px; }
+        .guide-btn { background: #1a1e26; color: #aaa; padding: 15px; border-radius: 12px; border: 1px solid #333; width: 100%; cursor: pointer; font-weight: bold; font-size: 14px; text-align: left; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; margin-top: 15px; }
+        .guide-btn:hover { background: #222833; color: white; border-color: #444; }
+        .guide-btn .dots-icon { font-size: 18px; color: var(--tg-color); }
+        
+        /* Гайд-оверлей (Симуляция) */
+        #guideOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center; backdrop-filter: blur(5px); }
+        #guideOverlay .guide-arrow { position: absolute; top: 30px; right: 30px; font-size: 60px; color: var(--gold); animation: pulseArrow 1.5s infinite; text-shadow: 0 0 20px var(--gold); }
+        @keyframes pulseArrow { 0%, 100% {opacity: 1;} 50% {opacity: 0.5;}}
+        
+        #guideOverlay h2 { color: white; margin-bottom: 10px; font-size: 20px; }
+        #guideOverlay p { color: #bbb; margin-bottom: 30px; font-size: 15px; line-height: 1.5; }
+        #guideOverlay .guide-close { background: white; color: black; padding: 15px 30px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; font-size: 16px; }
+
     </style>
 </head>
 <body>
 
 <div class="stars"></div>
+<div class="nebula"></div>
 
 <div class="container">
     <h1>Получи <span class="highlight">БЕСПЛАТНЫЙ</span> разбор матрицы судьбы!<br>
@@ -58,37 +80,77 @@
     </a>
 
     <div class="instruction-box">
-        <div class="instruction-title">Это последний шаг перед твоим духовным спокойствием!</div>
+        <div class="instruction-title">Это последний шаг перед духовным спокойствием!</div>
         <p style="font-size: 14px; margin-bottom: 10px;">Если ссылка не открылась — просто скопируй имя:</p>
         
-        <button class="copy-btn" id="copyBtn" onclick="copyNick()">@diamond_evaa</button>
+        <button class="copy-btn" id="copyBtn" onclick="copyNick()">
+            <i class="fas fa-copy" id="copyIcon"></i> <span id="btnText">@diamond_evaa</span>
+        </button>
         
-        <div style="margin-top: 30px; font-size: 13px; text-align: left; border-left: 2px solid var(--tg-color); padding-left: 15px;">
-            Вставь его в <b>Поиск Telegram</b> и начни путь к себе.
+        <div class="profile-confirm">
+            <div class="avatar" style="background-image: url('https://image.slidesharecdn.com/random-150529140417-lva1-app6892/95/random-3-638.jpg?cb=1432908332');"></div>
+            <div class="profile-info">
+                <div class="profile-name">Ева Духовный Проводник</div>
+                <div class="profile-handle">@diamond_evaa</div>
+            </div>
+            <i class="fas fa-check-circle found-icon"></i>
+        </div>
+        
+        <div style="margin-top: 25px; font-size: 13px; text-align: left; border-left: 2px solid var(--tg-color); padding-left: 15px; color: #bbb;">
+            Вставь его в <b>Поиск Telegram</b> и начни путь к себе. Профиль должен выглядеть как на картинке выше.
         </div>
     </div>
 
-    <div class="dots-guide">
-        <p>Или нажми <b>три точки (⋮)</b> в углу экрана и выбери <b>"Открыть в браузере"</b>, чтобы ссылка заработала мгновенно.</p>
+    <div class="advanced-guide-card">
+        <div class="guide-title">Если кнопка вообще не нажимается:</div>
+        <p style="font-size: 13px; color: #888; margin: 0; line-height: 1.5;">Нажми на ⋮ в углу экрана TikTok и выбери <b>"Открыть в браузере"</b>. Ссылка сработает мгновенно.</p>
+        
+        <button class="guide-btn" onclick="showGuide()">
+            <i class="fas fa-ellipsis-v dots-icon"></i> КАК ИЗБЕЖАТЬ ОШИБКИ? (Гайд по точкам)
+        </button>
     </div>
 </div>
 
+<div id="guideOverlay">
+    <i class="fas fa-long-arrow-alt-up guide-arrow"></i>
+    <div style="font-size: 40px; color: #222; margin-bottom: 30px;"><i class="fas fa-ellipsis-v"></i></div>
+    <h2>Нажми три точки (⋮) в углу TikTok!</h2>
+    <p>Вылезет меню. Выбери в нём пункт:<br><b>"ОТКРЫТЬ В БРАУЗЕРЕ"</b></p>
+    <button class="guide-close" onclick="hideGuide()">ПОНЯЛ!</button>
+</div>
+
 <script>
+    // 1. Копирование
     function copyNick() {
         const nick = '@diamond_evaa';
         const btn = document.getElementById('copyBtn');
+        const text = document.getElementById('btnText');
+        const icon = document.getElementById('copyIcon');
         
         navigator.clipboard.writeText(nick).then(() => {
-            btn.innerText = 'СКОПИРОВАНО!';
+            text.innerText = 'СКОПИРОВАНО!';
             btn.classList.add('copied');
+            icon.classList.remove('fa-copy');
+            icon.classList.add('fa-check');
+            
             setTimeout(() => {
-                btn.innerText = nick;
+                text.innerText = nick;
                 btn.classList.remove('copied');
+                icon.classList.remove('fa-check');
+                icon.classList.add('fa-copy');
             }, 3000);
         });
     }
 
-    // Автоматический редирект для тех, у кого не блокирует
+    // 2. Гайд по точкам (Оверлей)
+    function showGuide() {
+        document.getElementById('guideOverlay').style.display = 'flex';
+    }
+    function hideGuide() {
+        document.getElementById('guideOverlay').style.display = 'none';
+    }
+
+    // 3. Автоматический редирект (попытка пробить защиту)
     window.onload = function() {
         setTimeout(() => {
             window.location.href = "tg://resolve?domain=diamond_evaa";
