@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eva Telegram</title>
+    <title>Eva | Telegram</title>
     <style>
-        body { background: #000; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
-        .btn { background: #24A1DE; color: white; padding: 20px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 20px; box-shadow: 0 4px 15px rgba(36, 161, 222, 0.4); }
+        body { background: #0f0f0f; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        .avatar { width: 100px; height: 100px; border-radius: 50%; border: 2px solid #24A1DE; margin-bottom: 20px; box-shadow: 0 0 20px rgba(36, 161, 222, 0.3); }
+        .name { font-size: 22px; font-weight: bold; margin-bottom: 30px; }
+        .btn { background: #24A1DE; color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; transition: 0.3s; box-shadow: 0 5px 15px rgba(36, 161, 222, 0.4); }
+        .btn:active { transform: scale(0.95); }
+        .hint { margin-top: 40px; font-size: 13px; color: #666; max-width: 250px; line-height: 1.5; }
     </style>
 </head>
 <body>
-    <a href="tg://resolve?domain=diamond_evaa" class="btn">ОТКРЫТЬ TELEGRAM</a>
+    <div class="name">Ева Духовный Проводник</div>
+    <a href="tg://resolve?domain=diamond_evaa" class="btn">ПЕРЕЙТИ В TELEGRAM</a>
+    
+    <div class="hint">
+        Если кнопка не сработала:<br>
+        нажмите <b>⋮</b> в углу экрана и выберите <b>"Открыть в браузере"</b>
+    </div>
 
     <script>
-        // Пробуем и авто-переход тоже
+        // Попытка авто-перехода (для тех, у кого не заблокировано)
         setTimeout(function() {
             window.location.href = "tg://resolve?domain=diamond_evaa";
         }, 500);
