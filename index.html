@@ -1,32 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eva | Telegram</title>
+    <title>Бесплатный разбор Матрицы Судьбы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #0f0f0f; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
-        .avatar { width: 100px; height: 100px; border-radius: 50%; border: 2px solid #24A1DE; margin-bottom: 20px; box-shadow: 0 0 20px rgba(36, 161, 222, 0.3); }
-        .name { font-size: 22px; font-weight: bold; margin-bottom: 30px; }
-        .btn { background: #24A1DE; color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; transition: 0.3s; box-shadow: 0 5px 15px rgba(36, 161, 222, 0.4); }
-        .btn:active { transform: scale(0.95); }
-        .hint { margin-top: 40px; font-size: 13px; color: #666; max-width: 250px; line-height: 1.5; }
+        :root { --tg-color: #24A1DE; --bg-dark: #0a0b10; --gold: #ffd700; }
+        body { background: var(--bg-dark); color: white; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        
+        /* Фон с эффектом туманности */
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 50% 50%, #1a2a44 0%, #0a0b10 100%); opacity: 0.6; }
+
+        .container { width: 90%; max-width: 400px; text-align: center; padding: 20px; }
+
+        /* Шапка */
+        h1 { font-size: 20px; line-height: 1.4; margin-bottom: 25px; font-weight: 500; }
+        .highlight { color: var(--gold); font-weight: 900; font-size: 24px; text-transform: uppercase; text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); display: inline-block; animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); text-shadow: 0 0 25px rgba(255, 215, 0, 0.9); } 100% { transform: scale(1); } }
+
+        /* Стрелки */
+        .arrow-down { font-size: 24px; color: var(--tg-color); margin: 10px 0; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* Кнопка ТГ */
+        .btn-main { background: var(--tg-color); color: white; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px rgba(36, 161, 222, 0.4); border: none; width: 100%; cursor: pointer; }
+        .btn-main i { font-size: 22px; }
+
+        /* Блок инструкции */
+        .instruction-box { background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(36, 161, 222, 0.5); border-radius: 20px; padding: 20px; margin-top: 30px; position: relative; }
+        .instruction-title { font-size: 14px; color: #aaa; margin-bottom: 15px; font-style: italic; }
+        
+        /* Кнопка копирования */
+        .copy-btn { background: #1c1f26; border: 1px solid #333; color: var(--tg-color); padding: 12px; border-radius: 10px; font-family: monospace; font-size: 18px; width: 100%; margin-bottom: 10px; cursor: pointer; transition: 0.3s; position: relative; }
+        .copy-btn::after { content: 'Нажми, чтобы скопировать'; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #666; width: 100%; }
+        .copy-btn.copied { background: #1b3d2a; color: #4CAF50; border-color: #4CAF50; }
+
+        /* Гайд по точкам */
+        .dots-guide { margin-top: 40px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 15px; font-size: 13px; color: #888; border-top: 1px solid #222; }
+        .dots-guide b { color: #ccc; }
+        .dots-icon { position: absolute; top: 10px; right: 10px; font-size: 20px; color: white; opacity: 0.5; }
     </style>
 </head>
 <body>
-    <div class="name">Ева Духовный Проводник</div>
-    <a href="tg://resolve?domain=diamond_evaa" class="btn">ПЕРЕЙТИ В TELEGRAM</a>
-    
-    <div class="hint">
-        Если кнопка не сработала:<br>
-        нажмите <b>⋮</b> в углу экрана и выберите <b>"Открыть в браузере"</b>
+
+<div class="stars"></div>
+
+<div class="container">
+    <h1>Получи <span class="highlight">БЕСПЛАТНЫЙ</span> разбор матрицы судьбы!<br>
+    <span style="font-size: 16px; opacity: 0.8;">Напиши мне в Telegram свою дату рождения</span></h1>
+
+    <div class="arrow-down"><i class="fas fa-chevron-down"></i></div>
+
+    <a href="tg://resolve?domain=diamond_evaa" class="btn-main" id="tgLink">
+        <i class="fab fa-telegram"></i> Напишите мне!
+    </a>
+
+    <div class="instruction-box">
+        <div class="instruction-title">Это последний шаг перед твоим духовным спокойствием!</div>
+        <p style="font-size: 14px; margin-bottom: 10px;">Если ссылка не открылась — просто скопируй имя:</p>
+        
+        <button class="copy-btn" id="copyBtn" onclick="copyNick()">@diamond_evaa</button>
+        
+        <div style="margin-top: 30px; font-size: 13px; text-align: left; border-left: 2px solid var(--tg-color); padding-left: 15px;">
+            Вставь его в <b>Поиск Telegram</b> и начни путь к себе.
+        </div>
     </div>
 
-    <script>
-        // Попытка авто-перехода (для тех, у кого не заблокировано)
-        setTimeout(function() {
+    <div class="dots-guide">
+        <p>Или нажми <b>три точки (⋮)</b> в углу экрана и выбери <b>"Открыть в браузере"</b>, чтобы ссылка заработала мгновенно.</p>
+    </div>
+</div>
+
+<script>
+    function copyNick() {
+        const nick = '@diamond_evaa';
+        const btn = document.getElementById('copyBtn');
+        
+        navigator.clipboard.writeText(nick).then(() => {
+            btn.innerText = 'СКОПИРОВАНО!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.innerText = nick;
+                btn.classList.remove('copied');
+            }, 3000);
+        });
+    }
+
+    // Автоматический редирект для тех, у кого не блокирует
+    window.onload = function() {
+        setTimeout(() => {
             window.location.href = "tg://resolve?domain=diamond_evaa";
-        }, 500);
-    </script>
+        }, 1500);
+    };
+</script>
+
 </body>
 </html>
