@@ -2,18 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Переход...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eva Telegram</title>
+    <style>
+        body { background: #000; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
+        .btn { background: #24A1DE; color: white; padding: 20px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 20px; box-shadow: 0 4px 15px rgba(36, 161, 222, 0.4); }
+    </style>
 </head>
-<body style="text-align:center; padding-top:50px; font-family:sans-serif;">
-    <h2>Перенаправляем в Telegram...</h2>
+<body>
+    <a href="tg://resolve?domain=diamond_evaa" class="btn">ОТКРЫТЬ TELEGRAM</a>
+
     <script>
-        // Это магия, которая дергает приложение ТГ
-        window.location.href = "tg://resolve?domain=diamond_evaa";
-        
-        // Если через 1 сек не перекинуло, открываем обычную ссылку
+        // Пробуем и авто-переход тоже
         setTimeout(function() {
-            window.location.href = "https://t.me/diamond_evaa";
-        }, 1000);
+            window.location.href = "tg://resolve?domain=diamond_evaa";
+        }, 500);
     </script>
 </body>
 </html>
