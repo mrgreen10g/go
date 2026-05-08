@@ -32,15 +32,21 @@
             animation: glow 2s ease-in-out infinite alternate;
         }
         @keyframes glow { from { text-shadow: 0 0 10px var(--gold); } to { text-shadow: 0 0 20px var(--mystic); } }
-        
-        .example { opacity: 0.6; font-size: 13px; margin-top: 12px; font-style: italic; color: #7d5fff; }
 
+        /* Кнопка с анимацией пульсации */
         .btn-main { 
             background: linear-gradient(135deg, var(--tg-color), var(--mystic));
             color: white; padding: 18px; border-radius: 50px; text-decoration: none; 
             font-weight: bold; font-size: 17px; display: flex; align-items: center; 
             justify-content: center; gap: 12px; box-shadow: 0 8px 25px rgba(125, 95, 255, 0.3);
             border: none; width: 100%; cursor: pointer;
+            animation: pulseBtn 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseBtn {
+            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(125, 95, 255, 0.3); }
+            50% { transform: scale(1.04); box-shadow: 0 12px 35px rgba(125, 95, 255, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(125, 95, 255, 0.3); }
         }
 
         .copy-section { margin-top: 40px; background: rgba(255,255,255,0.03); border-radius: 24px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); width: 100%; }
@@ -80,16 +86,15 @@
 <div class="container">
     <div class="header">
         <h1> Получите <span class="highlight">БЕСПЛАТНЫЙ</span><br>разбор матрицы судьбы! 🔮</h1>
-        <p style="opacity: 0.9; font-size: 15px; margin: 15px 0 0 0; line-height: 1.5;">Напишите мне в Telegram<br>свою дату рождения и имя ✨</p>
-        <div class="example">Пример — Мария 16.03.1989</div>
+        <p style="opacity: 0.9; font-size: 17px; margin: 15px 0 0 0; line-height: 1.5; font-weight: bold;">Начните новую жизнь! ✨</p>
     </div>
 
     <button class="btn-main" onclick="handleMainClick()">
-        <i class="fab fa-telegram-plane"></i> НАПИШИТЕ МНЕ!
+        <i class="fab fa-telegram-plane"></i> ПОЛУЧИТЬ РАЗБОР!
     </button>
 
     <div class="copy-section">
-        <div class="copy-title">Или скопируйте мой ник и найдите меня прямо в поиске Telegram 👇</div>
+        <div class="copy-title">Или скопируйте название и найдите мое приложение прямо в поиске Telegram 👇</div>
         <button class="nick-btn" onclick="copyNick()">@diamond_evaa</button>
         <img src="search_preview.png" class="search-preview" alt="Поиск Евы">
     </div>
