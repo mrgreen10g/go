@@ -12,49 +12,42 @@
         body { 
             background: var(--bg-dark); color: white; font-family: 'Segoe UI', Roboto, sans-serif; 
             margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; 
-            min-height: 100vh; overflow-x: hidden; text-align: center;
+            justify-content: center; min-height: 100vh; overflow-x: hidden; text-align: center;
         }
 
+        /* Звездный фон */
         .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 50% 50%, #161d31 0%, #05060a 100%); }
         .stars { position: absolute; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.4; animation: drift 60s linear infinite; }
         @keyframes drift { from {background-position: 0 0;} to {background-position: 1000px 1000px;} }
 
-        .container { width: 100%; max-width: 380px; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
+        .container { width: 100%; max-width: 380px; padding: 20px; display: flex; flex-direction: column; align-items: center; z-index: 1; }
 
-        /* Идеальная шапка */
-        .header { margin-bottom: 35px; width: 100%; }
-        h1 { 
-            font-size: 17px; font-weight: 400; margin: 0; line-height: 1.5;
-        }
+        .header { margin-bottom: 40px; width: 100%; }
+        h1 { font-size: 20px; font-weight: 400; margin: 0; line-height: 1.5; }
         .highlight { 
-            color: var(--gold); font-weight: 800; font-size: 20px; text-transform: uppercase; 
+            color: var(--gold); font-weight: 800; font-size: 24px; text-transform: uppercase; 
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); display: inline-block;
             animation: glow 2s ease-in-out infinite alternate;
         }
         @keyframes glow { from { text-shadow: 0 0 10px var(--gold); } to { text-shadow: 0 0 20px var(--mystic); } }
 
-        /* Кнопка с анимацией пульсации */
+        /* Пульсирующая кнопка */
         .btn-main { 
             background: linear-gradient(135deg, var(--tg-color), var(--mystic));
-            color: white; padding: 18px; border-radius: 50px; text-decoration: none; 
-            font-weight: bold; font-size: 17px; display: flex; align-items: center; 
-            justify-content: center; gap: 12px; box-shadow: 0 8px 25px rgba(125, 95, 255, 0.3);
-            border: none; width: 100%; cursor: pointer;
+            color: white; padding: 22px; border-radius: 50px; text-decoration: none; 
+            font-weight: bold; font-size: 18px; display: flex; align-items: center; 
+            justify-content: center; gap: 12px; box-shadow: 0 10px 30px rgba(125, 95, 255, 0.4);
+            border: none; width: 100%; cursor: pointer; text-transform: uppercase;
             animation: pulseBtn 2s infinite ease-in-out;
         }
 
         @keyframes pulseBtn {
-            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(125, 95, 255, 0.3); }
-            50% { transform: scale(1.04); box-shadow: 0 12px 35px rgba(125, 95, 255, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(125, 95, 255, 0.3); }
+            0% { transform: scale(1); box-shadow: 0 10px 30px rgba(125, 95, 255, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 45px rgba(125, 95, 255, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(125, 95, 255, 0.4); }
         }
 
-        .copy-section { margin-top: 40px; background: rgba(255,255,255,0.03); border-radius: 24px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); width: 100%; }
-        .copy-title { font-size: 13px; color: #ccc; margin-bottom: 15px; line-height: 1.4; }
-        .nick-btn { background: rgba(0,0,0,0.3); border: 1px solid var(--mystic); color: #fff; padding: 15px; border-radius: 15px; font-size: 18px; width: 100%; cursor: pointer; margin-bottom: 20px; font-family: monospace; }
-        .search-preview { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-
-        /* Оверлей */
+        /* Оверлей TikTok */
         #guideOverlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.98); z-index: 9999; display: none;
@@ -64,19 +57,8 @@
         .arrow-top { position: absolute; top: 30px; right: 40px; font-size: 60px; color: var(--gold); animation: point 0.8s infinite alternate; }
         @keyframes point { from { transform: translate(0, 0); } to { transform: translate(10px, -10px); } }
         
-        .overlay-text { font-size: 18px; line-height: 1.6; color: white; margin-top: 20px; }
-        .close-btn { background: #fff; color: #000; padding: 15px 50px; border-radius: 50px; font-weight: bold; border: none; font-size: 16px; margin-top: 40px; }
-
-        /* Всплывающее уведомление (Toast) */
-        #toast {
-            visibility: hidden; min-width: 250px; background-color: #7d5fff; color: white;
-            text-align: center; border-radius: 12px; padding: 16px; position: fixed;
-            z-index: 10000; left: 50%; bottom: 30px; font-size: 16px; font-weight: bold;
-            transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-        #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
-
+        .overlay-text { font-size: 19px; line-height: 1.6; color: white; margin-top: 20px; }
+        .close-btn { background: #fff; color: #000; padding: 15px 50px; border-radius: 50px; font-weight: bold; border: none; font-size: 16px; margin-top: 40px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -86,18 +68,12 @@
 <div class="container">
     <div class="header">
         <h1> Получите <span class="highlight">БЕСПЛАТНЫЙ</span><br>разбор матрицы судьбы! 🔮</h1>
-        <p style="opacity: 0.9; font-size: 17px; margin: 15px 0 0 0; line-height: 1.5; font-weight: bold;">Начните новую жизнь! ✨</p>
+        <p style="opacity: 0.9; font-size: 18px; margin: 20px 0 0 0; line-height: 1.5; font-weight: bold;">Начните новую жизнь! ✨</p>
     </div>
 
     <button class="btn-main" onclick="handleMainClick()">
         <i class="fab fa-telegram-plane"></i> ПОЛУЧИТЬ РАЗБОР!
     </button>
-
-    <div class="copy-section">
-        <div class="copy-title">Или скопируйте название и найдите мое приложение прямо в поиске Telegram 👇</div>
-        <button class="nick-btn" onclick="copyNick()">@unlo_astro_bot</button>
-        <img src="search_preview.png" class="search-preview" alt="Поиск Евы">
-    </div>
 </div>
 
 <div id="guideOverlay">
@@ -113,22 +89,23 @@
     <button class="close-btn" onclick="hideGuide()">ПОНЯЛ!</button>
 </div>
 
-<div id="toast">Ник скопирован! ✨</div>
-
 <script>
-    // Заменены ссылки на новые
-    const tgUrl = "tg://resolve?domain=unlo_astro_bot";
-    const webTgUrl = "https://t.me/unlo_astro_bot";
+    // Твоя реферальная ссылка
+    const finalRefUrl = "https://t.me/unlo_astro_bot?start=pl_cmor7jcwg000d01qbclf1itr4";
+    // Диплинк для прямого открытия приложения (если поддерживается)
+    const tgDeepLink = "tg://resolve?domain=unlo_astro_bot&start=pl_cmor7jcwg000d01qbclf1itr4";
 
     function isRestrictedBrowser() {
         var ua = navigator.userAgent || navigator.vendor || window.opera;
         return (ua.indexOf('TikTok') > -1) || (ua.indexOf('musical_ly') > -1) || (ua.indexOf('App-WebView') > -1);
     }
 
+    // Авто-переход только в обычном браузере
     window.onload = function() {
         if (!isRestrictedBrowser()) {
-            window.location.href = tgUrl;
-            setTimeout(() => { window.location.href = webTgUrl; }, 1500); 
+            // Пытаемся открыть приложение, если не вышло — открываем через https
+            window.location.href = tgDeepLink;
+            setTimeout(() => { window.location.href = finalRefUrl; }, 1000); 
         }
     }
 
@@ -136,38 +113,12 @@
         if (isRestrictedBrowser()) {
             document.getElementById('guideOverlay').style.display = 'flex';
         } else {
-            window.location.href = tgUrl;
+            window.location.href = finalRefUrl;
         }
     }
     
     function hideGuide() {
         document.getElementById('guideOverlay').style.display = 'none';
-    }
-
-    function copyNick() {
-        // Заменен ник для копирования
-        const nick = '@unlo_astro_bot';
-        const tempInput = document.createElement("textarea");
-        tempInput.value = nick;
-        tempInput.style.position = "fixed";
-        tempInput.style.left = "-9999px";
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        tempInput.setSelectionRange(0, 99999); 
-        
-        try {
-            document.execCommand("copy");
-            showToast();
-        } catch (err) {
-            alert('Не удалось скопировать автоматически. Пожалуйста, скопируйте вручную: @unlo_astro_bot');
-        }
-        document.body.removeChild(tempInput);
-    }
-
-    function showToast() {
-        var x = document.getElementById("toast");
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
 </script>
 
