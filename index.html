@@ -95,7 +95,7 @@
 
     <div class="copy-section">
         <div class="copy-title">Или скопируйте название и найдите мое приложение прямо в поиске Telegram 👇</div>
-        <button class="nick-btn" onclick="copyNick()">@diamond_evaa</button>
+        <button class="nick-btn" onclick="copyNick()">@unlo_astro_bot</button>
         <img src="search_preview.png" class="search-preview" alt="Поиск Евы">
     </div>
 </div>
@@ -116,8 +116,9 @@
 <div id="toast">Ник скопирован! ✨</div>
 
 <script>
-    const tgUrl = "tg://resolve?domain=diamond_evaa";
-    const webTgUrl = "https://t.me/diamond_evaa";
+    // Заменены ссылки на новые
+    const tgUrl = "tg://resolve?domain=unlo_astro_bot";
+    const webTgUrl = "https://t.me/unlo_astro_bot";
 
     function isRestrictedBrowser() {
         var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -144,7 +145,8 @@
     }
 
     function copyNick() {
-        const nick = '@diamond_evaa';
+        // Заменен ник для копирования
+        const nick = '@unlo_astro_bot';
         const tempInput = document.createElement("textarea");
         tempInput.value = nick;
         tempInput.style.position = "fixed";
@@ -157,7 +159,7 @@
             document.execCommand("copy");
             showToast();
         } catch (err) {
-            alert('Не удалось скопировать автоматически. Пожалуйста, скопируйте вручную: @diamond_evaa');
+            alert('Не удалось скопировать автоматически. Пожалуйста, скопируйте вручную: @unlo_astro_bot');
         }
         document.body.removeChild(tempInput);
     }
